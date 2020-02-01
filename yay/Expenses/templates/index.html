@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+  <div class="add_buttons">
+
+    <div class="button-group">
+      <a href="{% url 'display_Farhan' %}" class="btn btn-primary btn-md btn-trim" role="button"> Farhan</a>
+      <a href="{% url 'add_Farhan' %}" class="btn btn-warning btn-sm btn-pad" role="button"> +</a>
+
+      <a href="{% url 'display_Nadia' %}" class="btn btn-primary btn-md btn-trim" role="button"> Nadia</a>
+      <a href="{% url 'add_Nadia' %}" class="btn btn-warning btn-sm btn-pad" role="button"> +</a>
+
+      <a href="{% url 'display_FarhanFamilySuperFund' %}" class="btn btn-primary btn-md btn-trim" role="button"> Farhan Family Super Fund</a>
+      <a href="{% url 'add_FarhanFamilySuperFund' %}" class="btn btn-warning btn-sm btn-pad" role="button"> +</a>
+
+      <a href="{% url 'display_Ongie' %}" class="btn btn-primary btn-md btn-trim" role="button"> Ongie</a>
+      <a href="{% url 'add_Ongie' %}" class="btn btn-warning btn-sm btn-pad" role="button"> +</a>
+
+      <a href="{% url 'display_OrangeTrust' %}" class="btn btn-primary btn-md btn-trim" role="button"> OrangeTrust</a>
+      <a href="{% url 'add_OrangeTrust' %}" class="btn btn-warning btn-sm btn-pad" role="button"> +</a>
+
+    </div>
+
+  </div>
+
+  <div>
+
+    <h4>Currently Viewing {{ header }}</h4>
+  </div>
+
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>id</th>
+        <th>Title</th>
+        <th>Value</th>
+        <th>Category</th>
+        <th>Image</th>
+        <th>Date</th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+
+      {% for item in items %}
+
+      <tr>
+        <td>{{ item.pk }}
+        <td>{{ itemTitle }}</td>
+        <td>{{ item.Value }} $</td>
+        <td>{{ item.Category }}</td>
+        <td>{{ item.Image }}</td>
+        <td>{{ item.Date }}</td>
+
+        {% if header|lower == "Farhan" %}
+        <td>
+            <a href="{% url 'edit_Farhan' item.pk %}" class="btn btn-warning btn-sm" role="button" aria-pressed="true" > Edit</a>
+            <a href="{% url 'delete_Farhan' item.pk%}" class="btn btn-danger btn-sm" role="button" aria-pressed="true" > x</a>
+        </td>
+        {% elif header|lower == "Nadia" %}
+        <td>
+            <a href="{% url 'edit_Nadia' item.pk %}" class="btn btn-warning btn-sm" role="button" aria-pressed="true" > Edit</a>
+            <a href="{% url 'delete_Nadia' item.pk%}" class="btn btn-danger btn-sm" role="button" aria-pressed="true" > x</a>
+        </td>
+        {% elif header|lower == "Farhan Family Super Fund" %}
+        <td>
+            <a href="{% url 'edit_FarhanFamilySuperFund' item.pk %}" class="btn btn-warning btn-sm" role="button" aria-pressed="true" > Edit</a>
+            <a href="{% url 'delete_FarhanFamilySuperFund' item.pk%}" class="btn btn-danger btn-sm" role="button" aria-pressed="true" > x</a>
+        </td>
+
+        {% elif header|lower == "OrangeTrust" %}
+        <td>
+            <a href="{% url 'edit_OrangeTrust' item.pk %}" class="btn btn-warning btn-sm" role="button" aria-pressed="true" > Edit</a>
+            <a href="{% url 'delete_OrangeTrust' item.pk%}" class="btn btn-danger btn-sm" role="button" aria-pressed="true" > x</a>
+        </td>
+        {% else %}
+        <td>
+            <a href="{% url 'edit_Ongie' item.pk %}" class="btn btn-warning btn-sm" role="button" aria-pressed="true" > Edit</a>
+            <a href="{% url 'delete_Ongie' item.pk%}" class="btn btn-danger btn-sm" role="button" aria-pressed="true" > x</a>
+        </td>
+        {% endif %}
+
+
+      </tr>
+
+      {% endfor %}
+    </tbody>
+  </table>
+
+{% endblock %}
